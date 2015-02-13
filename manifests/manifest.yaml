@@ -1,4 +1,4 @@
-!!rabbitmq.loader.Manifest
+!!io.github.fallwizard.rabbitmq.loader.Manifest
 bindings:
 - arguments: {}
   destination: apps

@@ -3,32 +3,55 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>rabbitmq</groupId>
-	<artifactId>mgmt</artifactId>
-	<version>3.8.0</version>
+	<groupId>io.github.fallwizard</groupId>
+	<artifactId>rabbitmq-mgmt</artifactId>
+	<version>3.8.1</version>
 	<packaging>jar</packaging>
 
 	<name>RabbitMQ Management</name>
-	<url>http://github.com/Berico-Technologies/RabbidManagement</url>
+    <description>Manage your RabbitMQ services programmatically</description>
+	<url>http://github.com/Fallwizard/RabbidManagement</url>
 
+    
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    
+    
+    <scm>
+        <url>scm:git@github.com:Fallwizard/RabbidManagement</url>
+        <connection>scm:git@github.com:Fallwizard/RabbidManagement</connection>
+        <developerConnection>scm:git@github.com:Fallwizard/RabbidManagement</developerConnection>
+    </scm>
+    
+    
+    <developers>
+        <developer>
+            <id>rclayton</id>
+            <name>Richard Clayton</name>
+            <email>rlc.blacksun@gmail.com</email>
+        </developer>
+    </developers>
+    
+    
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-	<repositories>
-		<repository>
-			<id>nexus.bericotechnologies.com</id>
-			<name>Berico Technologies Nexus</name>
-			<url>http://nexus.bericotechnologies.com/content/groups/public</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+    
+	<distributionManagement>
+        <repository>
+            <id>oss.sonatype.org</id>
+            <name>Maven Central Staging Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 	
+    
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -97,7 +120,7 @@
             <version>16.0</version>
         </dependency>
         <dependency>
-            <groupId>com.berico.utils</groupId>
+            <groupId>io.github.fallwizard</groupId>
             <artifactId>test-junit</artifactId>
             <version>1.0.0</version>
         </dependency>
@@ -112,21 +135,8 @@
             <version>14.0.1</version>
         </dependency>
     </dependencies>
-	
-	<distributionManagement>
-	<repository>
-		<id>nexus.bericotechnologies.com</id>
-		<name>Berico Technologies Nexus</name>
-		<url>http://nexus.bericotechnologies.com/content/repositories/releases/</url>
-	</repository>
-	
-	<snapshotRepository>
-	  <id>nexus.bericotechnologies.com</id>
-	  <name>Berico Technologies Nexus</name>
-	  <url>http://nexus.bericotechnologies.com/content/repositories/snapshots/</url>
-	</snapshotRepository>
-  </distributionManagement>
 
+    
     <build>
         <plugins>
             <plugin>
@@ -148,6 +158,35 @@
                             <goal>integration-test</goal>
                             <goal>verify</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.5</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <keyname>${gpg.keyname}</keyname>
+                            <passphraseServerId>${gpg.keyname}</passphraseServerId>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -177,4 +216,6 @@
             </plugin>
         </plugins>
     </build>
+    
+    
 </project>

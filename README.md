@@ -13,6 +13,11 @@ The library was developed in support of our AMPere project (http://github.com/Be
 
 > Note about versions.  This library was originally keeping in sync with the AMPere project (so it started it's life at 3.1.0.  I'm going to break with tradition an let it version as needed.  Sorry for any confusion.
 
+**v3.8.1**
+
+- Moved all code to io.github.fallwizard.rabbitmq namespace
+- First version uploaded to maven central
+
 **v3.8.0**
 
 - Removed the setting for using ssl from `RabbitMmgtService` and made it a contract requirement of `HttpClientProvider`.  Instantiating the client should now make a lot more sense.
@@ -67,7 +72,7 @@ The library was developed in support of our AMPere project (http://github.com/Be
 
 **v3.4.2**
 
-- Added XStream alias so we don't get a funky XML root of `<rabbitmq.loader.Manifest />`.
+- Added XStream alias so we don't get a funky XML root of `<io.github.fallwizard.rabbitmq.loader.Manifest />`.
 
 **v3.4.1**
 

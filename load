@@ -2,4 +2,4 @@
 
 cmdOptions=$@
 
-mvn exec:java -Dexec.mainClass="rabbitmq.loader.ManifestLoader" -Dexec.args="${cmdOptions}"
+mvn exec:java -Dexec.mainClass="io.github.fallwizard.rabbitmq.loader.ManifestLoader" -Dexec.args="${cmdOptions}"
